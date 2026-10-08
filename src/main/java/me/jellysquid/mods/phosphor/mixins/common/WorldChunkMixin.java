@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WorldChunk.class)
 public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingData, ILightingEngineProvider {
-    private static final Direction[] HORIZONTAL = Direction.Plane.HORIZONTAL.getDirections();
+    private static final Direction[] HORIZONTAL = Direction.Plane.HORIZONTAL.get();
 
     @Shadow
     @Final
@@ -232,7 +232,7 @@ public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingD
 
             WorldChunk chunk = slice.getChunkFromWorldCoords(j, k);
             if (chunk != null) {
-                max = Math.min(max, chunk.getMinimumHeightMap());
+                max = Math.min(max, chunk.getLowestHeight());
             }
         }
 

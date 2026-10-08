@@ -7,7 +7,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.chunk.ChunkSource;
 import net.minecraft.client.world.chunk.ClientChunkCache;
-import net.minecraft.world.chunk.ServerChunkCache;
+import net.minecraft.server.world.chunk.ServerChunkCache;
 
 public class ChunkHelper {
     public static WorldChunk getLoadedChunk(ChunkSource chunkProvider, int x, int z) {

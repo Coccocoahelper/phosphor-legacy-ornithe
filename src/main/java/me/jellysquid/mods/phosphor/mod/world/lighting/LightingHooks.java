@@ -317,7 +317,7 @@ public class LightingHooks {
 
                             if (key != 0) {
 
-                                BlockState state = Block.BLOCK_STATES.get(key);
+                                BlockState state = Block.STATE_REGISTRY.get(key);
 
                                 if (state != null) {
                                     int light = state.getBlock().getLight();

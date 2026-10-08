@@ -17,7 +17,7 @@ public abstract class WorldChunkS2CPacketMixin {
      * @author JellySquid
      */
     @Inject(method = "saveChunkData", at = @At("HEAD"))
-    private static void onCalculateChunkSize(WorldChunk chunk, boolean load, boolean notNether, int i, CallbackInfoReturnable<WorldChunkS2CPacket.ExtraData> cir) {
+    private static void onCalculateChunkSize(WorldChunk chunk, boolean load, boolean notNether, int i, CallbackInfoReturnable<WorldChunkS2CPacket.ChunkData> cir) {
         ((ILightingEngineProvider) chunk).getLightingEngine().processLightUpdates();
     }
 }

@@ -13,7 +13,7 @@ pluginManagement {
 			url = 'https://maven.ornithemc.net/snapshots'
 		}
 		maven {
-			name = "legacy-fabric"
+			name = "Legacy Fabric"
 			url = "https://maven.legacyfabric.net/"
 		}
 		mavenLocal()

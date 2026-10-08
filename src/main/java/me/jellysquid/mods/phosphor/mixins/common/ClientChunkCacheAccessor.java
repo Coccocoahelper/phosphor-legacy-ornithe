@@ -2,7 +2,7 @@ package me.jellysquid.mods.phosphor.mixins.common;
 
 import net.minecraft.util.Long2ObjectHashMap;
 import net.minecraft.world.chunk.WorldChunk;
-import net.minecraft.world.chunk.ClientChunkCache;
+import net.minecraft.client.world.chunk.ClientChunkCache;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 

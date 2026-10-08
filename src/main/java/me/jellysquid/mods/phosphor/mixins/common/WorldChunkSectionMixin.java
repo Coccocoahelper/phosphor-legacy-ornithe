@@ -84,7 +84,7 @@ public abstract class WorldChunkSectionMixin {
             return true;
         }
 
-        byte[] arr = storage.getValue();
+        byte[] arr = storage.getData();
 
         for (byte b : arr) {
             if (b != val) {

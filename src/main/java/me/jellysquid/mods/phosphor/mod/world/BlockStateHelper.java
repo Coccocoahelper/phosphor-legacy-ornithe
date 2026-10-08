@@ -24,7 +24,11 @@ public class BlockStateHelper {
             int key = section.getBlockStates()[(y & 15) << 8 | (z & 15) << 4 | x & 15];
 
             if (key != 0) {
+<<<<<<< HEAD
+                BlockState state = Block.BLOCK_STATES.get(key);
+=======
                 BlockState state = Block.STATE_REGISTRY.fromId(key);
+>>>>>>> 633a7c9d1a559bd49f722d1b818899f4fa92b4cb
 
                 if (state != null) {
                     return state;

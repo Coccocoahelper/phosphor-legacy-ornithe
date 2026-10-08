@@ -77,7 +77,7 @@ public class LightingEngine implements ILightingEngine {
 
     static {
         for (int i = 0; i < 6; ++i) {
-            final Vec3i offset = DirectionAccessor.getAll()[i].getVector();
+            final Vec3i offset = DirectionAccessor.getAll()[i].getNormal();
             neighborShifts[i] = ((long) offset.getY() << sY) | ((long) offset.getX() << sX) | ((long) offset.getZ() << sZ);
         }
     }
@@ -193,7 +193,7 @@ public class LightingEngine implements ILightingEngine {
 
     @Environment(EnvType.CLIENT)
     private boolean isCallingFromMainThread() {
-        return Minecraft.getInstance().isOnThread();
+        return Minecraft.getInstance().isOnSameThread();
     }
 
     private void acquireLock() {
@@ -363,7 +363,7 @@ public class LightingEngine implements ILightingEngine {
 
                 if (oldLight == curLight) //only process this if nothing else has happened at this position since scheduling
                 {
-                    this.world.onLightUpdate(this.curPos);
+                    this.world.notifyLightChanged(this.curPos);
 
                     if (curLight > 1) {
                         this.spreadLightFromCursor(curLight, lightType);
@@ -422,7 +422,7 @@ public class LightingEngine implements ILightingEngine {
     }
 
 
-    private static int getCachedLightFor(WorldChunk chunk, ChunkSection section, BlockPos pos, LightType lightType) {
+    private static int getCachedLightFor(WorldChunk chunk, WorldChunkSection section, BlockPos pos, LightType lightType) {
         int i = pos.getX() & 15;
         int j = pos.getY();
         int k = pos.getZ() & 15;
@@ -537,7 +537,7 @@ public class LightingEngine implements ILightingEngine {
         final int posY = (int) (longPos >> sY & mY);
         final int posZ = (int) (longPos >> sZ & mZ) - (1 << lZ - 1);
 
-        return pos.setPosition(posX, posY, posZ);
+        return pos.set(posX, posY, posZ);
     }
 
     private static long encodeWorldCoord(final BlockPos pos) {
@@ -606,7 +606,7 @@ public class LightingEngine implements ILightingEngine {
     }
 
     private WorldChunk getChunk(final BlockPos pos) {
-        return ChunkHelper.getLoadedChunk(this.world.getChunkProvider(),pos.getX() >> 4, pos.getZ() >> 4);
+        return ChunkHelper.getLoadedChunk(this.world.getChunkSource(),pos.getX() >> 4, pos.getZ() >> 4);
     }
 
     private static class NeighborInfo {

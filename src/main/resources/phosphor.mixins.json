@@ -7,7 +7,7 @@
         "common.WorldChunkS2CPacketMixin",
         "common.WorldChunkMixin",
         "common.WorldChunkMixin$Vanilla",
-        "common.ChunkSectionMixin",
+        "common.WorldChunkSectionMixin",
         "common.DirectionAccessor",
         "common.ServerChunkCacheAccessor",
         "common.ServerChunkCacheMixin",

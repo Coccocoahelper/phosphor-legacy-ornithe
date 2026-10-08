@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "${archives_base_name}",
+	"id": "phosphor_legacy_ornithe",
 	"version": "${version}",
     "name": "Phosphor Legacy Ornithe",
     "description": "Phosphor is a Minecraft mod aiming to save your CPU cycles and improve performance by optimizing one of Minecraft's most inefficient areas: the lighting engine.",

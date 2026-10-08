@@ -1,0 +1,27 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "me.jellysquid.mods.phosphor.mixins",
+    "compatibilityLevel": "JAVA_8",
+    "mixins": [
+        "common.WorldChunkDataS2CPacketMixin",
+        "common.WorldChunkMixin",
+        "common.WorldChunkMixin$Vanilla",
+        "common.ChunkSectionMixin",
+        "common.DirectionAccessor",
+        "common.ServerChunkCacheAccessor",
+        "common.ServerChunkCacheMixin",
+        "common.AnvilChunkStorageMixin",
+        "common.WorldMixin"
+    ],
+    "client": [
+        "client.MinecraftMixin",
+        "common.ClientChunkCacheAccessor"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "conformVisibility": true
+    }
+}

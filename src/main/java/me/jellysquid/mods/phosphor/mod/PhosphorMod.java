@@ -10,7 +10,7 @@ public class PhosphorMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER = LogManager.getLogger("phosphor_legacy_ornithe");
+        LOGGER = LogManager.getLogger("phosphor-legacy");
         CONFIG = PhosphorConfig.loadConfig();
     }
 }

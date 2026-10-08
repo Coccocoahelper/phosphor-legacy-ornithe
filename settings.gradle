@@ -12,6 +12,10 @@ pluginManagement {
 			name = 'Ornithe Snapshots'
 			url = 'https://maven.ornithemc.net/snapshots'
 		}
+		maven {
+			name = "legacy-fabric"
+			url = "https://maven.legacyfabric.net/"
+		}
 		mavenLocal()
 		gradlePluginPortal()
 	}

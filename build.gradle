@@ -22,7 +22,7 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-	mappings ploceus.featherMappings(project.feather_build)
+	mappings "net.legacyfabric:legacy-yarn:${project.minecraft_version}+build.4:v2"
 }
 
 processResources {

@@ -413,7 +413,7 @@ public class LightingEngine implements ILightingEngine {
             }
 
             if (nChunk != null) {
-                WorldChunkSection nSection = nChunk.getBlockStorage()[nPos.getY() >> 4];
+                WorldChunkSection nSection = nChunk.getSections()[nPos.getY() >> 4];
 
                 info.light = getCachedLightFor(nChunk, nSection, nPos, lightType);
                 info.section = nSection;
@@ -436,7 +436,7 @@ public class LightingEngine implements ILightingEngine {
             }
         }
         else if (lightType == LightType.SKY) {
-            if (chunk.getWorld().dimension.hasNoSkylight()) {
+            if (chunk.getWorld().dimension.hasNoSky()) {
                 return 0;
             }
             else {

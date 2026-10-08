@@ -31,7 +31,7 @@ public class LightingHooks {
         final int yMin = Math.min(height1, height2);
         final int yMax = Math.max(height1, height2) - 1;
 
-        final WorldChunkSection[] sections = chunk.getBlockStorage();
+        final WorldChunkSection[] sections = chunk.getSections();
 
         final int xBase = (chunk.chunkX << 4) + x;
         final int zBase = (chunk.chunkZ << 4) + z;
@@ -283,7 +283,7 @@ public class LightingHooks {
                 short[] neighborLightChecks = ((IChunkLightingData) chunk).getNeighborLightChecks();
 
                 for (int i = 0; i < FLAG_COUNT; ++i) {
-                    neighborLightChecks[i] = ((NbtShort) list.get(i)).shortValue();
+                    neighborLightChecks[i] = ((NbtShort) list.get(i)).getShort();
                 }
             }
             else {
@@ -298,8 +298,8 @@ public class LightingHooks {
 
         final BlockPos.Mutable pos = new BlockPos.Mutable(xBase, 0, zBase);
 
-        if (world.isRegionLoaded(pos.add(-16, 0, -16), pos.add(31, 255, 31), false)) {
-            final WorldChunkSection[] sections = chunk.getBlockStorage();
+        if (world.isAreaLoaded(pos.add(-16, 0, -16), pos.add(31, 255, 31), false)) {
+            final WorldChunkSection[] sections = chunk.getSections();
 
             for (int j = 0; j < sections.length; ++j) {
                 final WorldChunkSection section = sections[j];
@@ -316,7 +316,7 @@ public class LightingHooks {
                             int key = section.getBlockStates()[y << 8 | z << 4 | x];
 
                             if (key != 0) {
-                                BlockState state = Block.BLOCK_STATES.fromId(key);
+                                BlockState state = Block.STATE_REGISTRY.fromId(key);
 
                                 if (state != null) {
                                     int light = state.getBlock().getLight();
@@ -333,7 +333,7 @@ public class LightingHooks {
                 }
             }
 
-            if (!world.dimension.hasNoSkylight()) {
+            if (!world.dimension.hasNoSky()) {
                 ((IChunkLightingData) chunk).setSkylightUpdatedPublic();
             }
 
@@ -362,7 +362,7 @@ public class LightingHooks {
     }
 
     public static void initSkylightForSection(final World world, final WorldChunk chunk, final WorldChunkSection section) {
-        if (!world.dimension.hasNoSkylight()) {
+        if (!world.dimension.hasNoSky()) {
             for (int x = 0; x < 16; ++x) {
                 for (int z = 0; z < 16; ++z) {
                     if (chunk.getHeight(x, z) <= section.getYOffset()) {

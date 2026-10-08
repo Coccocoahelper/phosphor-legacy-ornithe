@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(WorldChunk.class)
 public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingData, ILightingEngineProvider {
-    private static final Direction[] HORIZONTAL = Direction.DirectionType.HORIZONTAL.getDirections();
+    private static final Direction[] HORIZONTAL = Direction.Plane.HORIZONTAL.getDirections();
 
     @Shadow
     @Final
@@ -96,7 +96,7 @@ public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingD
      */
     @Inject(method = "load", at = @At("RETURN"))
     private void onLoad(CallbackInfo ci) {
-        LightingHooks.scheduleRelightChecksForChunkBoundaries(this.world, (Chunk) (Object) this);
+        LightingHooks.scheduleRelightChecksForChunkBoundaries(this.world, (WorldChunk) (Object) this);
     }
 
     // === REPLACEMENTS ===
@@ -138,7 +138,7 @@ public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingD
         if (j != i) {
             this.heightMap[z << 4 | x] = j;
 
-            if (!this.world.dimension.hasNoSkylight()) {
+            if (!this.world.dimension.hasNoSky()) {
                 LightingHooks.relightSkylightColumn(this.world, (WorldChunk) (Object) this, x, z, i, j);
             }
 
@@ -183,7 +183,7 @@ public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingD
 
         WorldChunkSlice slice = new WorldChunkSlice(this.world, this.chunkX, this.chunkZ);
 
-        if (this.world.isRegionLoaded(new BlockPos(this.chunkX * 16 + 8, 0, this.chunkZ * 16 + 8), 16)) {
+        if (this.world.isAreaLoaded(new BlockPos(this.chunkX * 16 + 8, 0, this.chunkZ * 16 + 8), 16)) {
             for (int x = 0; x < 16; ++x) {
                 for (int z = 0; z < 16; ++z) {
                     if (this.recheckGapsForColumn(slice, x, z)) {
@@ -342,7 +342,7 @@ public abstract class WorldChunkMixin implements IChunkLighting, IChunkLightingD
             }
         }
         else if (lightType == LightType.SKY) {
-            if (this.world.dimension.hasNoSkylight()) {
+            if (this.world.dimension.hasNoSky()) {
                 return 0;
             }
             else {

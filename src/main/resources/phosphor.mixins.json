@@ -4,7 +4,7 @@
     "package": "me.jellysquid.mods.phosphor.mixins",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-        "common.WorldChunkDataS2CPacketMixin",
+        "common.WorldChunkS2CPacketMixin",
         "common.WorldChunkMixin",
         "common.WorldChunkMixin$Vanilla",
         "common.ChunkSectionMixin",

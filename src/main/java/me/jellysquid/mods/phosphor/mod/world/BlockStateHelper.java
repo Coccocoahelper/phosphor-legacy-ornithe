@@ -8,11 +8,11 @@ import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.chunk.WorldChunkSection;
 
 public class BlockStateHelper {
-    private static final BlockState DEFAULT_BLOCK_STATE = Blocks.AIR.getDefaultState();
+    private static final BlockState DEFAULT_BLOCK_STATE = Blocks.AIR.defaultState();
 
     // Avoids some additional logic in WorldChunk#getBlockState... 0 is always air
     public static BlockState posToState(final BlockPos pos, final WorldChunk chunk) {
-        return posToState(pos, chunk.getBlockStorage()[pos.getY() >> 4]);
+        return posToState(pos, chunk.getSections()[pos.getY() >> 4]);
     }
 
     public static BlockState posToState(final BlockPos pos, final WorldChunkSection section) {
@@ -24,7 +24,7 @@ public class BlockStateHelper {
             int key = section.getBlockStates()[(y & 15) << 8 | (z & 15) << 4 | x & 15];
 
             if (key != 0) {
-                BlockState state = Block.BLOCK_STATES.fromId(key);
+                BlockState state = Block.STATE_REGISTRY.fromId(key);
 
                 if (state != null) {
                     return state;

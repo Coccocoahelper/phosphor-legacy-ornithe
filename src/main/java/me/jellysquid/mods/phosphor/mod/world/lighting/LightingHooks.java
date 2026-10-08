@@ -283,11 +283,7 @@ public class LightingHooks {
                 short[] neighborLightChecks = ((IChunkLightingData) chunk).getNeighborLightChecks();
 
                 for (int i = 0; i < FLAG_COUNT; ++i) {
-<<<<<<< HEAD
-                    neighborLightChecks[i] = ((NbtShort) list.getElement(i)).shortValue();
-=======
-                    neighborLightChecks[i] = ((NbtShort) list.get(i)).getShort();
->>>>>>> 633a7c9d1a559bd49f722d1b818899f4fa92b4cb
+                    neighborLightChecks[i] = ((NbtShort) list.getElement(i)).getShort();
                 }
             }
             else {
@@ -320,11 +316,8 @@ public class LightingHooks {
                             int key = section.getBlockStates()[y << 8 | z << 4 | x];
 
                             if (key != 0) {
-<<<<<<< HEAD
+
                                 BlockState state = Block.BLOCK_STATES.get(key);
-=======
-                                BlockState state = Block.STATE_REGISTRY.fromId(key);
->>>>>>> 633a7c9d1a559bd49f722d1b818899f4fa92b4cb
 
                                 if (state != null) {
                                     int light = state.getBlock().getLight();
